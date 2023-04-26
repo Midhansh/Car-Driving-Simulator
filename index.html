@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Car Racing
+    </title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="//unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="//unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js" crossorigin="anonymous"></script>
+    <script src="./drive.js"></script>
+</head>
+
+<body>
+    <a-scene id="sceneonly">
+        <a-entity id="environment" environment="preset:starry ; skytype:gradient ; ligting:point"
+            background="color:yellow">
+        </a-entity>
+
+        <a-assets>
+            <a-asset-item id="wheel" src="./assets/steering_wheel/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-entity light="type:ambient; color:white; intensity:1.5;"></a-entity>
+
+        <a-entity light="type:directional; color:yellow; intensity:1;" position="0 15 20"></a-entity>
+
+        <a-entity id="camera-rig" position="0 1 5" rotation="0 0 0" drive movement-controls="speed: 0.5; constrainToNavMesh: true">
+        <a-entity id="camera" camera position="0 1.6 0" look-controls="pointerLockEnabled:False" rotation="0 0 0">
+
+            <a-entity id="control_wheel" gltf-model="#wheel" position="0.2 -0.12 -0.16" rotation="0 0 0"
+                scale="0.001 0.001 0.001"></a-entity>
+
+            <a-box id="control_break" src="assets/break.png" color="white" position="-0.4 -0.2 -0.3" rotation="0 0 0"
+                scale="0.05 0.05 0.01"></a-box>
+
+            <a-box id="control_acceleration" src="./assets/acc.png" color="white" position="-0.3 -0.2 -0.3"
+                rotation="0 0 0" scale="0.05 0.06 0.01"></a-box>
+
+            <a-entity id="move" position="-2 5 -7"
+                text="font:exo2bold; width:5; height:2; value:'Press up arrow to move'; color:white"></a-entity>
+
+            <a-entity id="stop" position="4 5 -7"
+                text="font:exo2bold; width:5; height:2; value:'Press spacebar to stop'; color:white"></a-entity>
+
+        </a-entity>
+    </a-entity>
+
+    </a-scene>
+</body>
+
+</html>
